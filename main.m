@@ -60,7 +60,7 @@ typedef enum {
 	noSuchFile,
 	help,
 	dumpData,
-	sync,
+	doSync,
 	refresh
 } parseResult;
 
@@ -98,8 +98,8 @@ void fDumpStockData(NSString *fileLoc1, NSString *fileLoc2) {
 		DEFAULT_STOCK_CHANGES_2] writeToFile:fileLoc2 atomically:YES];
 }
 
-parseResult parseArgs(int argc, const char *argv[], NSString **fileLocP, BOOL *useCustom) {
-	int i;
+parseResult parseArgs(NSInteger argc, const char *argv[], NSString **fileLocP, BOOL *useCustom) {
+	NSInteger i;
 	*useCustom = YES;
 	parseResult retVal = notSet;
 	
@@ -118,7 +118,7 @@ parseResult parseArgs(int argc, const char *argv[], NSString **fileLocP, BOOL *u
 		} else if (!strcmp(argv[i], "--sync")) {
 			if (retVal != notSet)
 				return failure;
-			retVal = sync;
+			retVal = doSync;
 			
 			if (i == argc - 1) // no more args
 				return failure;
@@ -148,7 +148,7 @@ parseResult parseArgs(int argc, const char *argv[], NSString **fileLocP, BOOL *u
 		return retVal;
 }
 
-int main (int argc, const char * argv[]) {
+int main(int argc, const char * argv[]) {
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	NSString *fileLoc = NULL;
 	BOOL useCustom, isRefresh = NO;
@@ -157,7 +157,7 @@ int main (int argc, const char * argv[]) {
 	{
 		NSArray *pathComps = [[DEFAULT_WORKING_DIR stringByExpandingTildeInPath] pathComponents];
 		NSString *tempPath = @"";
-		int i;
+		NSInteger i;
 		BOOL isDir;
 				
 		for (i = 0; i < [pathComps count]; i++) {
@@ -205,7 +205,7 @@ int main (int argc, const char * argv[]) {
 			break;
 		case refresh:
 			isRefresh = YES;
-		case sync:
+		case doSync:
 		{
 			id curClient;
 			if (useCustom) {

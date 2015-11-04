@@ -55,7 +55,7 @@
 	NSMutableDictionary *_evtChanges, *_evtRecords; // the parsed changes represented by CE: lines, and the parsed
 													// records represented by RE: lines
 	
-	int _lastSyncNumber, _highestLocalId; // the last sync number, a server stored datum, and the highest
+	NSInteger _lastSyncNumber, _highestLocalId; // the last sync number, a server stored datum, and the highest
 										  // number we've used for a local record id
 
 	BOOL _isRefresh; // Are we being asked to refresh our data from the truth?
@@ -72,7 +72,7 @@
 @interface ZenStockSyncClient (NonSyncMethods)
 
 - (BOOL)_readDataFromFile;
-- (BOOL)_parseChangeLine:(NSString *)curLine fields:(NSArray *)fields intoDict:(NSMutableDictionary *)changeDictionary entityName:(NSString *)entityName numAddsP:(int *)numAddsP;
+- (BOOL)_parseChangeLine:(NSString *)curLine fields:(NSArray *)fields intoDict:(NSMutableDictionary *)changeDictionary entityName:(NSString *)entityName numAddsP:(NSInteger *)numAddsP;
 - (NSMutableDictionary *)_mutDictFromChanges:(NSArray *)changes startingDict:(NSMutableDictionary *)startingDict;
 - (void)writeNewData;
 - (NSString *)dumpIcon;

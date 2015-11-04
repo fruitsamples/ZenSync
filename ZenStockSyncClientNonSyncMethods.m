@@ -56,7 +56,7 @@
 // Given an array of changes expected in the changes parameter of an ISyncChange, make a new dictionary,
 // possibly using the values of an original dictionary as starting points (modified values will overwrite them)
 - (NSMutableDictionary *)_mutDictFromChanges:(NSArray *)changes startingDict:(NSMutableDictionary *)startingDict {
-	int i;
+	NSInteger i;
 	NSMutableDictionary *retDict = [[NSMutableDictionary alloc] init];
 	
 	if (startingDict) {
@@ -82,7 +82,7 @@
 	NSMutableArray *calChangeLines = [[NSMutableArray alloc] init];
 	NSMutableArray *evtChangeLines = [[NSMutableArray alloc] init];
 	
-	int i, j, numAdds = 0;
+	NSInteger i, j, numAdds = 0;
 	
 	// Loop through lines, but save the change lines to be prsed after everything else (so we can check against records)
 	for (i = 0; i < [lines count]; i++) {
@@ -94,7 +94,7 @@
 		if ([curLine hasPrefix:@"T: "]) {
 			if (_lastSyncNumber != -1)
 				return NO;
-			_lastSyncNumber = [[curLine substringFromIndex:3] intValue];
+			_lastSyncNumber = [[curLine substringFromIndex:3] integerValue];
 		} else if ([curLine hasPrefix:@"RC: "]) {
 			valuesArray = [[curLine substringFromIndex:4] componentsSeparatedByString:@","];
 			newDict = [[NSMutableDictionary alloc] init];
@@ -104,7 +104,7 @@
 					[newDict setObject:[valuesArray objectAtIndex:j] forKey:[_calFields objectAtIndex:j]];
 			}
 			
-			int recIdAsInt = [(NSString *)[valuesArray objectAtIndex:0] intValue];
+			NSInteger recIdAsInt = [(NSString *)[valuesArray objectAtIndex:0] integerValue];
 			
 			_highestLocalId = (_highestLocalId > recIdAsInt) ? _highestLocalId : recIdAsInt;
 			
@@ -128,7 +128,7 @@
 				}
 			}
 			
-			int recIdAsInt = [(NSString *)[valuesArray objectAtIndex:0] intValue];
+			NSInteger recIdAsInt = [(NSString *)[valuesArray objectAtIndex:0] integerValue];
 			
 			_highestLocalId = (_highestLocalId > recIdAsInt) ? _highestLocalId : recIdAsInt;
 			
@@ -170,9 +170,9 @@
 	return YES;
 }
 
-- (BOOL)_parseChangeLine:(NSString *)curLine fields:(NSArray *)fields intoDict:(NSMutableDictionary *)changeDictionary entityName:(NSString *)entityName numAddsP:(int *)numAddsP {
+- (BOOL)_parseChangeLine:(NSString *)curLine fields:(NSArray *)fields intoDict:(NSMutableDictionary *)changeDictionary entityName:(NSString *)entityName numAddsP:(NSInteger *)numAddsP {
 	NSArray *valuesArray = NULL;
-	int j;
+	NSInteger j;
 
 	if (!fields)
 		return NO;
@@ -285,7 +285,7 @@
 
 // Write out our records (possibly changed by a sync) to the file we started with
 - (void)writeNewData {
-	int i;
+	NSInteger i;
 	NSEnumerator *recordsEnumerator = [_calRecords keyEnumerator];
 	NSString *recordId;
 	NSMutableString *writeString;
@@ -335,7 +335,7 @@
 - (NSString *)dumpIcon {
 	// If the file name you're using isn't Stock[somenumber].txt,
 	// you don't get a neatorific icon
-	int offset, clientNum = -1;
+	NSInteger offset, clientNum = -1;
 	NSString *fileName = [_fileLoc lastPathComponent];
 	
 	if ([fileName hasPrefix:@"Stock"]) {
@@ -343,7 +343,7 @@
 		NSString *possibleNum = [fileName substringWithRange:NSMakeRange(5, [fileName length] - 9)];
 		char firstPossibleChar = [possibleNum characterAtIndex:0];
 		if (firstPossibleChar >= '0' && firstPossibleChar <= '9')
-			clientNum = [possibleNum intValue];
+			clientNum = [possibleNum integerValue];
 	}
 	
 	// Why is this line here, you may ask.  The answer is that we need to get the system to accept that

@@ -21,7 +21,6 @@
 		5A682282070CD97700AE9C5F /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A68227F070CD97700AE9C5F /* AppKit.framework */; };
 		5A80341206F774BC003F3CCA /* Schema.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5A80340F06F774BC003F3CCA /* Schema.strings */; };
 		5A80343606F775F3003F3CCA /* Schema.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A80343206F775F3003F3CCA /* Schema.plist */; };
-		5A80344806F77946003F3CCA /* ZenCustomSchema.syncschema in CopyFiles */ = {isa = PBXBuildFile; fileRef = AACFEF270648279F00EC0D88 /* ZenCustomSchema.syncschema */; };
 		5AFAB019078CBACE006A0E8B /* ZenSyncClient.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5AFAB013078CBAB6006A0E8B /* ZenSyncClient.png */; };
 		8DD76F980486AA7600D96B5E /* ZenSync_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32A70AAB03705E1F00C91783 /* ZenSync_Prefix.pch */; };
 		8DD76F9A0486AA7600D96B5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -34,32 +33,6 @@
 		AADC26EF06FE8C2A003C8E3D /* ZenSchemaStrings.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A5769FC06F77F47009E9A96 /* ZenSchemaStrings.h */; };
 		AADC26F006FE8C2A003C8E3D /* ZenSchemaStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A576A0106F77F47009E9A96 /* ZenSchemaStrings.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXBuildStyle section */
-		014CEA4F0018CE4811CA2923 /* Development */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				OPTIMIZATION_CFLAGS = "-O0";
-				ZERO_LINK = YES;
-			};
-			name = Development;
-		};
-		014CEA500018CE4811CA2923 /* Deployment */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
-/* End PBXBuildStyle section */
 
 /* Begin PBXContainerItemProxy section */
 		AA06ECE8064830FE009E0976 /* PBXContainerItemProxy */ = {
@@ -82,7 +55,6 @@
 				5AFAB019078CBACE006A0E8B /* ZenSyncClient.png in CopyFiles */,
 				5A5769DD06F77CCF009E9A96 /* StockClientDescription.plist in CopyFiles */,
 				5A5769DE06F77CCF009E9A96 /* CustomClientDescription.plist in CopyFiles */,
-				5A80344806F77946003F3CCA /* ZenCustomSchema.syncschema in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,30 +211,6 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_ENABLE_TRIGRAPHS = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ZenSync_Prefix.pch;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "$(HOME)/bin";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZenSync;
-				REZ_EXECUTABLE = YES;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
 			dependencies = (
 				AA06ECE9064830FE009E0976 /* PBXTargetDependency */,
 			);
@@ -284,58 +232,11 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "";
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "ZenCustomSchema-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Application Support/SyncExamples/ZenSync";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZenCustomSchema;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wmost";
-				WRAPPER_EXTENSION = syncschema;
-			};
 			dependencies = (
 			);
 			name = ZenCustomSchema;
 			productName = ZenCustomSchema;
 			productReference = AACFEF270648279F00EC0D88 /* ZenCustomSchema.syncschema */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>ZenCustomSchema</string>
-	<key>CFBundleGetInfoString</key>
-	<string></string>
-	<key>CFBundleIconFile</key>
-	<string></string>
-	<key>CFBundleIdentifier</key>
-	<string>com.MySoftwareCompany.ZenCustomSchema</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string></string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1.0.0d1</string>
-</dict>
-</plist>
-";
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -344,15 +245,12 @@
 		08FB7793FE84155DC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 430EB2C008BBE43A00420A0D /* Build configuration list for PBXProject "ZenSync" */;
-			buildSettings = {
-			};
-			buildStyles = (
-				014CEA4F0018CE4811CA2923 /* Development */,
-				014CEA500018CE4811CA2923 /* Deployment */,
-			);
+			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
 			mainGroup = 08FB7794FE84155DC02AAC07 /* ZenSync */;
 			projectDirPath = "";
+			projectRoot = "";
+			shouldCheckCompatibility = 1;
 			targets = (
 				8DD76F960486AA7600D96B5E /* ZenSync */,
 				AACFEF260648279F00EC0D88 /* ZenCustomSchema */,
@@ -531,7 +429,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				ZERO_LINK = YES;
 			};
 			name = Debug;
@@ -546,7 +443,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Release;
 		};

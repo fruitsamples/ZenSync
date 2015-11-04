@@ -56,7 +56,7 @@
 // Given an array of changes expected in the changes parameter of an ISyncChange, make a new dictionary,
 // possibly using the values of an original dictionary as starting points (modified values will overwrite them)
 - (NSMutableDictionary *)_mutDictFromChanges:(NSArray *)changes startingDict:(NSMutableDictionary *)startingDict {
-	int i;
+	NSInteger i;
 	NSMutableDictionary *retDict = [[NSMutableDictionary alloc] init];
 	
 	if (startingDict) {
@@ -81,7 +81,7 @@
 	NSMutableDictionary *newDict = NULL;
 	NSMutableArray *changeLines = [[NSMutableArray alloc] init];
 	
-	int i, j, numAdds = 0;
+	NSInteger i, j, numAdds = 0;
 	
 	// Loop through lines, but save the change lines to be parsed after everything else
 	// (so we can check against records)
@@ -94,7 +94,7 @@
 		if ([curLine hasPrefix:@"T: "]) {
 			if (_lastSyncNumber != -1)
 				return NO;
-			_lastSyncNumber = [[curLine substringFromIndex:3] intValue];
+			_lastSyncNumber = [[curLine substringFromIndex:3] integerValue];
 		} else if ([curLine hasPrefix:@"R: "]) {
 			valuesArray = [[curLine substringFromIndex:3] componentsSeparatedByString:@","];
 			newDict = [[NSMutableDictionary alloc] init];
@@ -103,7 +103,7 @@
 				[newDict setObject:[valuesArray objectAtIndex:j] forKey:[_fields objectAtIndex:j]];
 			}
 			
-			int recIdAsInt = [(NSString *)[valuesArray objectAtIndex:0] intValue];
+			NSInteger recIdAsInt = [(NSString *)[valuesArray objectAtIndex:0] integerValue];
 			
 			_highestLocalId = (_highestLocalId > recIdAsInt) ? _highestLocalId : recIdAsInt;
 			
@@ -215,7 +215,7 @@
 
 // Write out our records (possibly changed by a sync) to the file we started with
 - (void)writeNewData {
-	int i;
+	NSInteger i;
 	NSEnumerator *recordsEnumerator = [_records keyEnumerator];
 	NSString *recordId;
 	NSMutableString *writeString;
@@ -242,7 +242,7 @@
 - (NSString *)dumpIcon {
 	// If the file name you're using isn't Custom[somenumber].txt,
 	// you don't get a neatorific icon
-	int offset, clientNum = -1;
+	NSInteger offset, clientNum = -1;
 	NSString *fileName = [_fileLoc lastPathComponent];
 	
 	if ([fileName hasPrefix:@"Custom"]) {
@@ -250,7 +250,7 @@
 		NSString *possibleNum = [fileName substringWithRange:NSMakeRange(6, [fileName length] - 10)];
 		char firstPossibleChar = [possibleNum characterAtIndex:0];
 		if (firstPossibleChar >= '0' && firstPossibleChar <= '9')
-			clientNum = [possibleNum intValue];
+			clientNum = [possibleNum integerValue];
 	}
 	
 	// Why is this line here, you may ask.  The answer is that we need to get the system to accept that

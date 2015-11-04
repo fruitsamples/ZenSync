@@ -207,15 +207,15 @@
 		// Using our custom data, determine the highest record Id the server should know about
 		NSNumber *highestServerId = (NSNumber *)[syncClient objectForKey:@"HighestId"];
 		//   If we've got a higher recordId in our local document, update our info on the server
-		if ([highestServerId intValue] < _highestLocalId) {
-			[syncClient setObject:[NSNumber numberWithInt:_highestLocalId] forKey:@"HighestId"];
+		if ([highestServerId integerValue] < _highestLocalId) {
+			[syncClient setObject:[NSNumber numberWithInteger:_highestLocalId] forKey:@"HighestId"];
 		} else {
-			_highestLocalId = [highestServerId intValue];
+			_highestLocalId = [highestServerId integerValue];
 		}
 	}
 	
 	// Using the custom data, get the number of the last sync, so we can bump it and store it
-	int serverLastSync = [(NSNumber *)[syncClient objectForKey:@"LastSyncNumber"] intValue];
+	NSInteger serverLastSync = [(NSNumber *)[syncClient objectForKey:@"LastSyncNumber"] integerValue];
 	_lastSyncNumber = (_lastSyncNumber > serverLastSync) ? _lastSyncNumber + 1 : serverLastSync + 1;
 	
 	// If we've been asked to do a refresh sync, inform the server, and skip the push phase altogether
@@ -258,7 +258,7 @@
 	
 	// Since we may have upped our highest seen local id due to an add being applied locally, reset the
 	// datum on the server
-	[syncClient setObject:[NSNumber numberWithInt:_highestLocalId] forKey:@"HighestId"];		
+	[syncClient setObject:[NSNumber numberWithInteger:_highestLocalId] forKey:@"HighestId"];		
 	
 	// Ask the server how it wants us to sync
 	if ([syncSession shouldPushAllRecordsForEntityName:entityName]) {
@@ -407,10 +407,10 @@
 	}
 
 	// Update our HighestId info (we might have incremented it while applying an add from the server)
-	[syncClient setObject:[NSNumber numberWithInt:_highestLocalId] forKey:@"HighestId"];
+	[syncClient setObject:[NSNumber numberWithInteger:_highestLocalId] forKey:@"HighestId"];
 	
 	// Update our LastSyncNumber info, now that we know the sync was successful
-	[syncClient setObject:[NSNumber numberWithInt:_lastSyncNumber] forKey:@"LastSyncNumber"];
+	[syncClient setObject:[NSNumber numberWithInteger:_lastSyncNumber] forKey:@"LastSyncNumber"];
 	
 	// tell the sync server we're done with this session
 	[syncSession finishSyncing];

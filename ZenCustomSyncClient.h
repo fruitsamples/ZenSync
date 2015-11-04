@@ -50,7 +50,7 @@
 	NSArray *_fields; // The different fields used in our custom schema
 	NSMutableDictionary *_changes, *_records; // the parsed changes represented by C: lines, and the parsed
 	// records represented by R: lines
-	int _lastSyncNumber, _highestLocalId; // the last sync number, a server stored datum, and the highest
+	NSInteger _lastSyncNumber, _highestLocalId; // the last sync number, a server stored datum, and the highest
 	// number we've used for a local record id
 	
 	BOOL _isRefresh; // Are we being asked to refresh our data from the truth?
